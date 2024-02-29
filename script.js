@@ -10,6 +10,7 @@ for(let i=0; i<gridRow; i++){
     for(let j=0; j<gridColumn; j++){
         const square = document.createElement("div");
         square.classList.add("square");
+        square.classList.add("grow");
 
         row.appendChild(square);
     }
@@ -40,3 +41,40 @@ gridSquare.forEach((square) => {
         e.target.style.backgroundColor = `rgb(${parseNumber(generateRGB())})`
     })
 })
+
+const gridSizeBtn = document.querySelector(".change-grid-size")
+gridSizeBtn.addEventListener("click", () => {
+    let gridSize = 0;
+    gridSize = prompt("Please enter a new grid size from 1-100.");
+    createNewGrid(gridSize, gridSize);
+})
+
+function clearGrid(){
+    containerDiv.replaceChildren();
+}
+
+function createNewGrid(newRow, newColumn){
+    clearGrid();
+
+    for(let i=0; i<newRow; i++){
+        const row = document.createElement("div");
+        row.classList.add("row");
+    
+        for(let j=0; j<newColumn; j++){
+            const square = document.createElement("div");
+            square.classList.add("square");
+            square.classList.add("grow");
+    
+            row.appendChild(square);
+        }
+        containerDiv.appendChild(row);
+    }
+
+    const gridSquare = document.querySelectorAll(".square");
+
+    gridSquare.forEach((square) => {
+        square.addEventListener("mouseover", (e) => {
+            e.target.style.backgroundColor = `rgb(${parseNumber(generateRGB())})`
+        })
+    })
+}
