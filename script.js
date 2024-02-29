@@ -4,11 +4,11 @@ let gridColumn = 16;
 const containerDiv = document.querySelector("#container");
 const rowDiv = document.querySelector(".row");
 
-for(let i=0; i<gridColumn; i++){
+for(let i=0; i<gridRow; i++){
     const row = document.createElement("div");
     row.classList.add("row");
 
-    for(let j=0; j<gridRow; j++){
+    for(let j=0; j<gridColumn; j++){
         const square = document.createElement("div");
         square.classList.add("square");
 
@@ -17,11 +17,16 @@ for(let i=0; i<gridColumn; i++){
     containerDiv.appendChild(row)
 }
 
-// const square = document.createElement("div")
-// square.classList.add("square")
+function generateRGB() {
+    let rgbArray = [0, 0, 0];
+    for(i=0;i<rgbArray.length;i++){
+        rgbArray[i] = generateRandomNumber()
+    }
+    return rgbArray
+}
 
-// const row = document.createElement("div")
-// row.classList.add("row")
+function generateRandomNumber() {
+    return Math.floor(Math.random() * 255)
+}
 
-
-// container.appendChild(square)
+console.log(generateRGB())
