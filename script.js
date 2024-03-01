@@ -3,18 +3,8 @@ let gridColumn = 16;
 
 const containerDiv = document.querySelector("#container");
 
-for(let i=0; i<gridRow; i++){
-    const row = document.createElement("div");
-    row.classList.add("row");
-
-    for(let j=0; j<gridColumn; j++){
-        const square = document.createElement("div");
-        square.classList.add("square");
-        square.classList.add("grow");
-
-        row.appendChild(square);
-    }
-    containerDiv.appendChild(row);
+function runPrompt(){
+    return prompt("Please enter a new grid size from 1-100.");
 }
 
 function generateRGB() {
@@ -45,8 +35,15 @@ gridSquare.forEach((square) => {
 const gridSizeBtn = document.querySelector(".change-grid-size")
 gridSizeBtn.addEventListener("click", () => {
     let gridSize = 0;
-    gridSize = prompt("Please enter a new grid size from 1-100.");
-    createNewGrid(gridSize, gridSize);
+    let valid = false;
+
+    while(!valid){
+        gridSize = parseInt(runPrompt());
+        if(gridSize <= 100 && gridSize > 0 && typeof(gridSize) === "number"){
+            valid = true;
+        } 
+    }
+    createNewGrid(gridSize, gridSize)
 })
 
 function clearGrid(){
@@ -78,3 +75,5 @@ function createNewGrid(newRow, newColumn){
         })
     })
 }
+
+createNewGrid(gridRow, gridColumn);
